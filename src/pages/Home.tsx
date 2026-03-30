@@ -16,7 +16,7 @@ export default function Home() {
 
   return (
     <div>
-      <section className="relative pt-32 pb-36 lg:pt-48 lg:pb-44 overflow-hidden hero-gradient">
+      <section className="relative pt-24 pb-28 lg:pt-36 lg:pb-36 overflow-hidden hero-gradient">
         <div className="max-w-7xl mx-auto px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-16 items-center">
             <div className="max-w-2xl animate-fade-up">
