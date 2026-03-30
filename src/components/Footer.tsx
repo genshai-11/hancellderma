@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { Instagram, Mail } from 'lucide-react';
 import { useI18n } from '../i18n/I18nProvider';
 
 export default function Footer() {
@@ -13,14 +12,7 @@ export default function Footer() {
           <p className="text-surface-variant font-body mb-6 max-w-sm leading-7">
             {text.footer.brand[lang]}
           </p>
-          <div className="flex space-x-4">
-            <a href="#" className="text-surface-variant hover:text-primary-fixed transition-colors" aria-label="Instagram">
-              <Instagram className="w-6 h-6" />
-            </a>
-            <a href="mailto:contact@hancellderma.com" className="text-surface-variant hover:text-primary-fixed transition-colors" aria-label="Email Hancell Derma">
-              <Mail className="w-6 h-6" />
-            </a>
-          </div>
+
         </div>
         <div>
           <h4 className="font-headline font-bold mb-4 text-primary-fixed">{text.footer.explore[lang]}</h4>
