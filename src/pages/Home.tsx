@@ -48,10 +48,10 @@ export default function Home() {
               <div className="absolute inset-0 bg-primary/5 rounded-full blur-3xl transform scale-150"></div>
               <div className="relative z-10 rounded-[2rem] bg-white p-3 md:p-4 editorial-shadow animate-soft-float hover-lift">
                 <div className="rounded-[1.5rem] overflow-hidden bg-surface-container-lowest border border-outline-variant/10 min-h-[520px] md:min-h-[640px] flex items-center justify-center">
-                  <img src={heroCollectionImg} alt="Hancell skincare collection" className="w-full h-full object-contain object-center scale-[1.02]" />
+                  <img src={heroCollectionImg} alt="Hancell skincare collection" className="w-full h-full object-contain object-center scale-[1.02] -translate-y-3 md:-translate-y-5" />
                 </div>
               </div>
-              <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 lg:left-auto lg:right-6 lg:translate-x-0 bg-white p-6 rounded-2xl editorial-shadow z-20 w-[92%] max-w-md hover-lift animate-fade-up-delay-3 border border-outline-variant/20">
+              <div className="absolute -bottom-14 md:-bottom-16 lg:-bottom-14 left-1/2 -translate-x-1/2 lg:left-auto lg:right-6 lg:translate-x-0 bg-white p-6 rounded-2xl editorial-shadow z-20 w-[92%] max-w-md hover-lift animate-fade-up-delay-3 border border-outline-variant/20">
                 <div className="text-xs font-bold tracking-[0.2em] text-primary uppercase mb-2">{text.home.featuredCollection[lang]}</div>
                 <p className="font-headline font-bold text-on-surface text-xl mb-2">{text.home.routineName[lang]}</p>
                 <p className="text-sm text-on-surface-variant font-body mb-4 leading-6">{text.home.routineDesc[lang]}</p>
