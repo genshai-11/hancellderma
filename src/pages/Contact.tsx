@@ -1,127 +1,17 @@
 import { ChevronDown, Clock, Globe, Mail } from 'lucide-react';
+import { useI18n } from '../i18n/I18nProvider';
 
 export default function Contact() {
+  const { lang } = useI18n();
+  const faq = [
+    { q: lang === 'ko' ? 'Hancell Derma는 어떤 피부에 적합한가요?' : lang === 'vi' ? 'Hancell Derma phù hợp với loại da nào?' : 'Who is Hancell Derma suitable for?', a: lang === 'ko' ? '한셀 포뮬러는 보습, 브라이트닝, 모공 케어, 데일리 보호 루틴을 포함해 다양한 피부 타입을 고려해 설계되었습니다.' : lang === 'vi' ? 'Công thức Hancell phù hợp cho nhiều loại da, bao gồm routine cấp ẩm, làm sáng, chăm sóc lỗ chân lông và bảo vệ hằng ngày.' : 'Hancell formulas are designed for all skin types, including routines focused on hydration, brightening, pore care, and daily protection.' },
+    { q: lang === 'ko' ? '완성형 스킨케어 루틴이 있나요?' : lang === 'vi' ? 'Có routine chăm sóc da hoàn chỉnh không?' : 'Do you offer a complete skincare routine?', a: lang === 'ko' ? '네. 컬렉션은 클렌징, 케어, 보습, 자외선 보호까지 이어지는 완성형 루틴으로 구성됩니다.' : lang === 'vi' ? 'Có. Bộ sưu tập được thiết kế để tạo thành routine hoàn chỉnh từ làm sạch, điều trị, dưỡng ẩm đến chống nắng.' : 'Yes. The collection is designed to support a full routine across cleansing, treatment, moisturising, and UV protection.' },
+    { q: lang === 'ko' ? '유통/입점 문의도 가능한가요?' : lang === 'vi' ? 'Tôi có thể liên hệ về phân phối hoặc đại lý không?' : 'Can I contact you about distribution or stockist opportunities?', a: lang === 'ko' ? '물론입니다. 한셀 더마에 관심 있는 리테일러, 디스트리뷰터, 클리닉, 파트너의 문의를 환영합니다.' : lang === 'vi' ? 'Hoàn toàn có thể. Chúng tôi chào đón các nhà bán lẻ, nhà phân phối, phòng khám và đối tác quan tâm đến Hancell Derma.' : 'Absolutely. We welcome inquiries from retailers, distributors, clinics, and partners interested in Hancell Derma.' },
+  ];
   return (
     <div>
-      <section className="pt-32 pb-16 bg-surface-container-lowest border-b border-outline-variant/20">
-        <div className="max-w-7xl mx-auto px-8 text-center">
-          <div className="text-sm font-semibold tracking-[0.2em] uppercase text-primary mb-4">Get in Touch</div>
-          <h1 className="text-4xl lg:text-6xl font-bold font-headline tracking-tighter mb-6 text-on-surface">
-            Inquiries, Partnerships & Stockists
-          </h1>
-          <p className="text-lg text-on-surface-variant font-body max-w-2xl mx-auto leading-relaxed">
-            Whether you're a retailer, distributor, clinic, or skincare enthusiast, we'd love to hear from you. Reach out for partnership opportunities, stockist availability, or general product inquiries.
-          </p>
-        </div>
-      </section>
-
-      <section className="py-24 bg-surface">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div className="bg-white p-8 md:p-12 rounded-3xl editorial-shadow border border-outline-variant/20">
-              <h2 className="text-3xl font-bold font-headline mb-8 text-on-surface">Send a Message</h2>
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-semibold text-on-surface mb-2 font-label">First Name</label>
-                    <input type="text" className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Jane" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-on-surface mb-2 font-label">Last Name</label>
-                    <input type="text" className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Doe" />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-on-surface mb-2 font-label">Email Address</label>
-                  <input type="email" className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="jane@example.com" />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-on-surface mb-2 font-label">Inquiry Type</label>
-                  <div className="relative">
-                    <select className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all appearance-none">
-                      <option>General Inquiry</option>
-                      <option>Product Information</option>
-                      <option>Partnership / Distribution</option>
-                      <option>Wholesale / Stockist</option>
-                      <option>Press / Media</option>
-                    </select>
-                    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-outline pointer-events-none" />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-on-surface mb-2 font-label">Message</label>
-                  <textarea rows={5} className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none" placeholder="Tell us how we can help."></textarea>
-                </div>
-                <button type="button" className="w-full primary-gradient-btn text-white px-8 py-4 rounded-xl font-headline font-semibold text-lg hover:opacity-90 transition-all">
-                  Contact Hancell
-                </button>
-              </form>
-            </div>
-
-            <div>
-              <div className="mb-16">
-                <h3 className="text-2xl font-bold font-headline mb-6 text-on-surface">Contact Information</h3>
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                      <Mail className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-headline font-bold text-on-surface mb-1">General Inquiries</h4>
-                      <p className="text-on-surface-variant font-body mb-1">Questions about products, routines, or the Hancell brand:</p>
-                      <a href="mailto:contact@hancellderma.com" className="text-primary font-semibold hover:underline">contact@hancellderma.com</a>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                      <Globe className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-headline font-bold text-on-surface mb-1">Partnerships & Stockists</h4>
-                      <p className="text-on-surface-variant font-body mb-1">Interested in carrying Hancell Derma in your store, clinic, or market?</p>
-                      <a href="mailto:contact@hancellderma.com" className="text-primary font-semibold hover:underline">contact@hancellderma.com</a>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                      <Clock className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-headline font-bold text-on-surface mb-1">Business Hours</h4>
-                      <p className="text-on-surface-variant font-body">Monday - Friday<br />9:00 AM - 6:00 PM KST</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-2xl font-bold font-headline mb-6 text-on-surface">Frequently Asked Questions</h3>
-                <div className="space-y-4">
-                  {[
-                    {
-                      q: 'Who is Hancell Derma suitable for?',
-                      a: 'Hancell formulas are designed for all skin types, including routines focused on hydration, brightening, pore care, and daily protection.',
-                    },
-                    {
-                      q: 'Do you offer a complete skincare routine?',
-                      a: 'Yes. The collection is designed to support a full routine across cleansing, treatment, moisturising, and UV protection.',
-                    },
-                    {
-                      q: 'Can I contact you about distribution or stockist opportunities?',
-                      a: 'Absolutely. We welcome inquiries from retailers, distributors, clinics, and partners interested in Hancell Derma.',
-                    },
-                  ].map((faq, i) => (
-                    <div key={i} className="bg-white p-6 rounded-2xl border border-outline-variant/20">
-                      <h4 className="font-headline font-bold text-on-surface mb-2">{faq.q}</h4>
-                      <p className="text-on-surface-variant font-body text-sm">{faq.a}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <section className="pt-32 pb-16 bg-surface-container-lowest border-b border-outline-variant/20"><div className="max-w-7xl mx-auto px-8 text-center"><div className="text-sm font-semibold tracking-[0.2em] uppercase text-primary mb-4">{lang === 'ko' ? '문의하기' : lang === 'vi' ? 'Liên hệ' : 'Get in Touch'}</div><h1 className="text-4xl lg:text-6xl font-bold font-headline tracking-tighter mb-6 text-on-surface">{lang === 'ko' ? '문의 · 파트너십 · 입점' : lang === 'vi' ? 'Liên hệ, đối tác & phân phối' : 'Inquiries, Partnerships & Stockists'}</h1><p className="text-lg text-on-surface-variant font-body max-w-2xl mx-auto leading-relaxed">{lang === 'ko' ? '리테일러, 디스트리뷰터, 클리닉, 스킨케어 관심 고객 모두를 위한 문의 페이지입니다.' : lang === 'vi' ? 'Dành cho nhà bán lẻ, nhà phân phối, phòng khám hoặc khách hàng quan tâm đến Hancell.' : "Whether you're a retailer, distributor, clinic, or skincare enthusiast, we'd love to hear from you. Reach out for partnership opportunities, stockist availability, or general product inquiries."}</p></div></section>
+      <section className="py-24 bg-surface"><div className="max-w-7xl mx-auto px-8"><div className="grid grid-cols-1 lg:grid-cols-2 gap-16"><div className="bg-white p-8 md:p-12 rounded-3xl editorial-shadow border border-outline-variant/20"><h2 className="text-3xl font-bold font-headline mb-8 text-on-surface">{lang === 'ko' ? '메시지 보내기' : lang === 'vi' ? 'Gửi tin nhắn' : 'Send a Message'}</h2><form className="space-y-6"><div className="grid grid-cols-1 md:grid-cols-2 gap-6"><div><label className="block text-sm font-semibold text-on-surface mb-2 font-label">{lang === 'ko' ? '이름' : lang === 'vi' ? 'Tên' : 'First Name'}</label><input type="text" className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Jane" /></div><div><label className="block text-sm font-semibold text-on-surface mb-2 font-label">{lang === 'ko' ? '성' : lang === 'vi' ? 'Họ' : 'Last Name'}</label><input type="text" className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Doe" /></div></div><div><label className="block text-sm font-semibold text-on-surface mb-2 font-label">{lang === 'ko' ? '이메일' : lang === 'vi' ? 'Email' : 'Email Address'}</label><input type="email" className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="jane@example.com" /></div><div><label className="block text-sm font-semibold text-on-surface mb-2 font-label">{lang === 'ko' ? '문의 유형' : lang === 'vi' ? 'Loại liên hệ' : 'Inquiry Type'}</label><div className="relative"><select className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all appearance-none"><option>{lang === 'ko' ? '일반 문의' : lang === 'vi' ? 'Liên hệ chung' : 'General Inquiry'}</option><option>{lang === 'ko' ? '제품 정보' : lang === 'vi' ? 'Thông tin sản phẩm' : 'Product Information'}</option><option>{lang === 'ko' ? '파트너십 / 유통' : lang === 'vi' ? 'Đối tác / phân phối' : 'Partnership / Distribution'}</option><option>{lang === 'ko' ? '도매 / 입점' : lang === 'vi' ? 'Đại lý / phân phối' : 'Wholesale / Stockist'}</option><option>{lang === 'ko' ? '미디어 / PR' : lang === 'vi' ? 'Truyền thông / PR' : 'Press / Media'}</option></select><ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-outline pointer-events-none" /></div></div><div><label className="block text-sm font-semibold text-on-surface mb-2 font-label">{lang === 'ko' ? '메시지' : lang === 'vi' ? 'Nội dung' : 'Message'}</label><textarea rows={5} className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none" placeholder={lang === 'ko' ? '문의 내용을 남겨주세요.' : lang === 'vi' ? 'Hãy cho chúng tôi biết bạn cần gì.' : 'Tell us how we can help.'}></textarea></div><button type="button" className="w-full primary-gradient-btn text-white px-8 py-4 rounded-xl font-headline font-semibold text-lg hover:opacity-90 transition-all">{lang === 'ko' ? '한셀에 문의하기' : lang === 'vi' ? 'Liên hệ Hancell' : 'Contact Hancell'}</button></form></div><div><div className="mb-16"><h3 className="text-2xl font-bold font-headline mb-6 text-on-surface">{lang === 'ko' ? '연락처' : lang === 'vi' ? 'Thông tin liên hệ' : 'Contact Information'}</h3><div className="space-y-6"><div className="flex items-start gap-4"><div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0"><Mail className="w-6 h-6 text-primary" /></div><div><h4 className="font-headline font-bold text-on-surface mb-1">{lang === 'ko' ? '일반 문의' : lang === 'vi' ? 'Liên hệ chung' : 'General Inquiries'}</h4><p className="text-on-surface-variant font-body mb-1">{lang === 'ko' ? '제품, 루틴, 브랜드 관련 문의:' : lang === 'vi' ? 'Câu hỏi về sản phẩm, routine hoặc thương hiệu:' : 'Questions about products, routines, or the Hancell brand:'}</p><a href="mailto:contact@hancellderma.com" className="text-primary font-semibold hover:underline">contact@hancellderma.com</a></div></div><div className="flex items-start gap-4"><div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0"><Globe className="w-6 h-6 text-primary" /></div><div><h4 className="font-headline font-bold text-on-surface mb-1">{lang === 'ko' ? '파트너십 & 입점' : lang === 'vi' ? 'Đối tác & phân phối' : 'Partnerships & Stockists'}</h4><p className="text-on-surface-variant font-body mb-1">{lang === 'ko' ? '스토어, 클리닉, 시장 입점을 원하시나요?' : lang === 'vi' ? 'Bạn muốn phân phối Hancell tại cửa hàng, phòng khám hoặc thị trường của mình?' : 'Interested in carrying Hancell Derma in your store, clinic, or market?'}</p><a href="mailto:contact@hancellderma.com" className="text-primary font-semibold hover:underline">contact@hancellderma.com</a></div></div><div className="flex items-start gap-4"><div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0"><Clock className="w-6 h-6 text-primary" /></div><div><h4 className="font-headline font-bold text-on-surface mb-1">{lang === 'ko' ? '운영 시간' : lang === 'vi' ? 'Giờ làm việc' : 'Business Hours'}</h4><p className="text-on-surface-variant font-body">{lang === 'ko' ? '월요일 - 금요일' : lang === 'vi' ? 'Thứ Hai - Thứ Sáu' : 'Monday - Friday'}<br />9:00 AM - 6:00 PM KST</p></div></div></div></div><div><h3 className="text-2xl font-bold font-headline mb-6 text-on-surface">{lang === 'ko' ? '자주 묻는 질문' : lang === 'vi' ? 'Câu hỏi thường gặp' : 'Frequently Asked Questions'}</h3><div className="space-y-4">{faq.map((item,i)=><div key={i} className="bg-white p-6 rounded-2xl border border-outline-variant/20"><h4 className="font-headline font-bold text-on-surface mb-2">{item.q}</h4><p className="text-on-surface-variant font-body text-sm">{item.a}</p></div>)}</div></div></div></div></div></section>
     </div>
   );
 }

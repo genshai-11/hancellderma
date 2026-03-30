@@ -1,128 +1,32 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Beaker, Droplets, Shield, Sparkles } from 'lucide-react';
 import { products } from '../data/products';
+import { useI18n } from '../i18n/I18nProvider';
 
 const biopeptide = products.find((product) => product.id === 'biopeptide-cream') ?? products[0];
 const serum = products.find((product) => product.id === 'hydrating-b5-serum') ?? products[0];
 const sunscreen = products.find((product) => product.id === 'uv-shield-sunscreen') ?? products[0];
 const peelSet = products.find((product) => product.id === 'peel-care-set') ?? products[0];
 
-const pillars = [
-  {
-    icon: Sparkles,
-    title: 'Peptide Technology',
-    badge: 'Wrinkle Support',
-    description:
-      'Multi-peptide complexes that signal skin cells to produce collagen, helping reduce the look of wrinkles from within.',
-    product: biopeptide,
-  },
-  {
-    icon: Droplets,
-    title: 'Hydro-Infusion',
-    badge: 'Hydration',
-    description:
-      'A water-binding approach designed to deliver moisture and support lasting hydration through lightweight, skin-friendly textures.',
-    product: serum,
-  },
-  {
-    icon: Shield,
-    title: 'Barrier Shield',
-    badge: 'Barrier Care',
-    description:
-      "Ceramide NP helps reinforce the skin's natural lipid barrier, reducing moisture loss and supporting protection against environmental stress.",
-    product: sunscreen,
-  },
-  {
-    icon: Beaker,
-    title: 'Triple Acid Peel',
-    badge: 'Texture Refining',
-    description:
-      'A professional-style combination of AHA, BHA, and PHA designed for controlled exfoliation and refined-looking skin texture.',
-    product: peelSet,
-  },
-];
-
-const metrics = [
-  { label: 'Hydration', value: '95%', note: 'showed improved hydration' },
-  { label: 'Wrinkle Depth', value: '87%', note: 'reduced wrinkle depth in 4 weeks' },
-  { label: 'Testing', value: '100%', note: 'dermatologist tested' },
-  { label: 'Additives', value: '0', note: 'harmful additives' },
-];
-
 export default function Science() {
+  const { lang, localizeProduct } = useI18n();
+  const pillars = [
+    { icon: Sparkles, title: lang === 'ko' ? '펩타이드 테크놀로지' : lang === 'vi' ? 'Công nghệ Peptide' : 'Peptide Technology', badge: lang === 'ko' ? '주름 케어' : lang === 'vi' ? 'Hỗ trợ nếp nhăn' : 'Wrinkle Support', description: lang === 'ko' ? '멀티 펩타이드 콤플렉스가 피부 컨디션과 탄력 케어를 지원합니다.' : lang === 'vi' ? 'Phức hợp multi-peptide hỗ trợ độ đàn hồi và cải thiện dấu hiệu nếp nhăn.' : 'Multi-peptide complexes that signal skin cells to produce collagen, helping reduce the look of wrinkles from within.', product: localizeProduct(biopeptide) },
+    { icon: Droplets, title: lang === 'ko' ? '하이드로 인퓨전' : lang === 'vi' ? 'Hydro-Infusion' : 'Hydro-Infusion', badge: lang === 'ko' ? '보습' : lang === 'vi' ? 'Cấp ẩm' : 'Hydration', description: lang === 'ko' ? '가벼운 텍스처로 수분을 전달하고 오래 유지되도록 돕는 수분 중심 접근입니다.' : lang === 'vi' ? 'Cách tiếp cận cấp ẩm giúp đưa độ ẩm vào da với kết cấu nhẹ và dễ chịu.' : 'A water-binding approach designed to deliver moisture and support lasting hydration through lightweight, skin-friendly textures.', product: localizeProduct(serum) },
+    { icon: Shield, title: lang === 'ko' ? '배리어 쉴드' : lang === 'vi' ? 'Barrier Shield' : 'Barrier Shield', badge: lang === 'ko' ? '장벽 케어' : lang === 'vi' ? 'Hàng rào bảo vệ' : 'Barrier Care', description: lang === 'ko' ? 'Ceramide NP가 피부 장벽 컨디션과 수분 밸런스를 서포트합니다.' : lang === 'vi' ? 'Ceramide NP hỗ trợ hàng rào bảo vệ da và giúp giảm thất thoát độ ẩm.' : "Ceramide NP helps reinforce the skin's natural lipid barrier, reducing moisture loss and supporting protection against environmental stress.", product: localizeProduct(sunscreen) },
+    { icon: Beaker, title: lang === 'ko' ? '트리플 애시드 필' : lang === 'vi' ? 'Triple Acid Peel' : 'Triple Acid Peel', badge: lang === 'ko' ? '결 케어' : lang === 'vi' ? 'Làm mịn bề mặt' : 'Texture Refining', description: lang === 'ko' ? 'AHA, BHA, PHA를 조합해 피부 결과 표면을 정돈하도록 설계되었습니다.' : lang === 'vi' ? 'Sự kết hợp của AHA, BHA và PHA được thiết kế để hỗ trợ bề mặt da mịn và tinh chỉnh kết cấu.' : 'A professional-style combination of AHA, BHA, and PHA designed for controlled exfoliation and refined-looking skin texture.', product: localizeProduct(peelSet) },
+  ];
+  const metrics = [
+    { label: lang === 'ko' ? '보습' : lang === 'vi' ? 'Cấp ẩm' : 'Hydration', value: '95%', note: lang === 'ko' ? '보습 개선' : lang === 'vi' ? 'cải thiện độ ẩm' : 'showed improved hydration' },
+    { label: lang === 'ko' ? '주름 깊이' : lang === 'vi' ? 'Độ sâu nếp nhăn' : 'Wrinkle Depth', value: '87%', note: lang === 'ko' ? '4주 후 감소' : lang === 'vi' ? 'giảm sau 4 tuần' : 'reduced wrinkle depth in 4 weeks' },
+    { label: lang === 'ko' ? '테스트' : lang === 'vi' ? 'Kiểm nghiệm' : 'Testing', value: '100%', note: lang === 'ko' ? '피부 테스트 완료' : lang === 'vi' ? 'đã kiểm nghiệm da liễu' : 'dermatologist tested' },
+    { label: lang === 'ko' ? '첨가물' : lang === 'vi' ? 'Phụ gia' : 'Additives', value: '0', note: lang === 'ko' ? '유해 첨가물' : lang === 'vi' ? 'phụ gia có hại' : 'harmful additives' },
+  ];
   return (
     <div>
-      <section className="pt-32 pb-16 bg-surface-container-lowest border-b border-outline-variant/20">
-        <div className="max-w-7xl mx-auto px-8 text-center animate-fade-up">
-          <div className="text-sm font-semibold tracking-[0.2em] uppercase text-primary mb-4">Science & Tech</div>
-          <h1 className="text-4xl lg:text-6xl font-bold font-headline tracking-tighter mb-6 text-on-surface">
-            The Science Behind Hancell Derma
-          </h1>
-          <p className="text-lg text-on-surface-variant font-body max-w-3xl mx-auto leading-relaxed">
-            Korean biotechnology meets dermatological precision through carefully selected actives, barrier-supportive care, and routine-based formulation design.
-          </p>
-        </div>
-      </section>
-
-      <section className="py-24 bg-surface">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {pillars.map((item) => (
-              <div key={item.title} className="bg-white rounded-3xl p-8 border border-outline-variant/20 editorial-shadow hover-lift animate-fade-up">
-                <div className="flex items-start gap-5 mb-6">
-                  <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0 interactive-scale">
-                    <item.icon className="w-8 h-8 text-primary" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="inline-flex rounded-full bg-primary/10 text-primary px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] mb-3">
-                      {item.badge}
-                    </div>
-                    <h2 className="text-2xl font-bold font-headline text-on-surface mb-3">{item.title}</h2>
-                    <p className="text-on-surface-variant font-body leading-7">{item.description}</p>
-                  </div>
-                </div>
-                <div className="bg-surface-container-lowest rounded-2xl p-5 flex items-center gap-4 border border-outline-variant/20 interactive-scale">
-                  <img src={item.product.image} alt={item.product.name} className="w-20 h-20 object-contain shrink-0" />
-                  <div>
-                    <div className="text-xs uppercase tracking-[0.2em] text-outline font-semibold mb-1">Featured Formula</div>
-                    <div className="font-headline font-bold text-on-surface">{item.product.shortName}</div>
-                    <div className="text-sm text-primary font-medium">{item.product.priceDisplay}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 bg-on-surface text-surface">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12 animate-fade-up">
-            <div className="text-sm font-semibold tracking-[0.2em] uppercase text-primary-fixed mb-3">Reported Results</div>
-            <h2 className="text-4xl font-bold font-headline mb-4">Visible Performance from Current Source Materials</h2>
-            <p className="text-surface-variant font-body text-lg leading-relaxed">
-              These statements are presented exactly as reported in the current Hancell source materials.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {metrics.map((metric) => (
-              <div key={metric.label} className="bg-white/6 border border-white/10 rounded-2xl p-8 text-center hover-lift animate-fade-up">
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/10 mb-4 interactive-scale">
-                  <Sparkles className="w-6 h-6 text-primary-fixed" />
-                </div>
-                <div className="font-headline text-4xl font-bold text-surface mb-2">{metric.value}</div>
-                <div className="text-sm font-semibold uppercase tracking-[0.2em] text-primary-fixed mb-2">{metric.label}</div>
-                <p className="text-surface-variant font-body leading-6">{metric.note}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-12 text-center animate-fade-up-delay-1">
-            <Link to="/products" className="inline-flex items-center gap-2 primary-gradient-btn text-white px-8 py-4 rounded-xl font-headline font-semibold text-lg hover:opacity-90 transition-all interactive-scale">
-              Discover the Collection <ArrowRight className="w-5 h-5" />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <section className="pt-32 pb-16 bg-surface-container-lowest border-b border-outline-variant/20"><div className="max-w-7xl mx-auto px-8 text-center animate-fade-up"><div className="text-sm font-semibold tracking-[0.2em] uppercase text-primary mb-4">{lang === 'ko' ? '사이언스 & 테크' : lang === 'vi' ? 'Khoa học & Công nghệ' : 'Science & Tech'}</div><h1 className="text-4xl lg:text-6xl font-bold font-headline tracking-tighter mb-6 text-on-surface">{lang === 'ko' ? '한셀 더마의 사이언스' : lang === 'vi' ? 'Khoa học phía sau Hancell Derma' : 'The Science Behind Hancell Derma'}</h1><p className="text-lg text-on-surface-variant font-body max-w-3xl mx-auto leading-relaxed">{lang === 'ko' ? '선별된 활성 성분과 장벽 중심 케어, 루틴 설계를 통해 한국 바이오테크와 더마 정밀성을 담아냅니다.' : lang === 'vi' ? 'Sinh học công nghệ Hàn Quốc kết hợp độ chính xác da liễu thông qua hoạt chất được chọn lọc, chăm sóc hàng rào da và thiết kế routine đồng bộ.' : 'Korean biotechnology meets dermatological precision through carefully selected actives, barrier-supportive care, and routine-based formulation design.'}</p></div></section>
+      <section className="py-24 bg-surface"><div className="max-w-7xl mx-auto px-8"><div className="grid grid-cols-1 md:grid-cols-2 gap-8">{pillars.map((item)=><div key={item.title} className="bg-white rounded-3xl p-8 border border-outline-variant/20 editorial-shadow hover-lift animate-fade-up"><div className="flex items-start gap-5 mb-6"><div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0 interactive-scale"><item.icon className="w-8 h-8 text-primary" /></div><div className="flex-1"><div className="inline-flex rounded-full bg-primary/10 text-primary px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] mb-3">{item.badge}</div><h2 className="text-2xl font-bold font-headline text-on-surface mb-3">{item.title}</h2><p className="text-on-surface-variant font-body leading-7">{item.description}</p></div></div><div className="bg-surface-container-lowest rounded-2xl p-5 flex items-center gap-4 border border-outline-variant/20 interactive-scale"><img src={item.product.image} alt={item.product.name} className="w-20 h-20 object-contain shrink-0" /><div><div className="text-xs uppercase tracking-[0.2em] text-outline font-semibold mb-1">{lang === 'ko' ? '대표 포뮬러' : lang === 'vi' ? 'Công thức tiêu biểu' : 'Featured Formula'}</div><div className="font-headline font-bold text-on-surface">{item.product.shortName}</div><div className="text-sm text-primary font-medium">{item.product.priceDisplay}</div></div></div></div>)}</div></div></section>
+      <section className="py-24 bg-on-surface text-surface"><div className="max-w-7xl mx-auto px-8"><div className="text-center max-w-2xl mx-auto mb-12 animate-fade-up"><div className="text-sm font-semibold tracking-[0.2em] uppercase text-primary-fixed mb-3">{lang === 'ko' ? '소스 기반 결과' : lang === 'vi' ? 'Kết quả theo tài liệu nguồn' : 'Reported Results'}</div><h2 className="text-4xl font-bold font-headline mb-4">{lang === 'ko' ? '현재 자료에 기반한 퍼포먼스' : lang === 'vi' ? 'Hiệu quả được nêu trong tài liệu hiện có' : 'Visible Performance from Current Source Materials'}</h2><p className="text-surface-variant font-body text-lg leading-relaxed">{lang === 'ko' ? '아래 문구는 현재 Hancell 자료에 기재된 내용만을 반영합니다.' : lang === 'vi' ? 'Các nội dung dưới đây được giữ đúng tinh thần từ tài liệu hiện có của Hancell.' : 'These statements are presented exactly as reported in the current Hancell source materials.'}</p></div><div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">{metrics.map((metric)=><div key={metric.label} className="bg-white/6 border border-white/10 rounded-2xl p-8 text-center hover-lift animate-fade-up"><div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/10 mb-4 interactive-scale"><Sparkles className="w-6 h-6 text-primary-fixed" /></div><div className="font-headline text-4xl font-bold text-surface mb-2">{metric.value}</div><div className="text-sm font-semibold uppercase tracking-[0.2em] text-primary-fixed mb-2">{metric.label}</div><p className="text-surface-variant font-body leading-6">{metric.note}</p></div>)}</div><div className="mt-12 text-center animate-fade-up-delay-1"><Link to="/products" className="inline-flex items-center gap-2 primary-gradient-btn text-white px-8 py-4 rounded-xl font-headline font-semibold text-lg hover:opacity-90 transition-all interactive-scale">{lang === 'ko' ? '컬렉션 보기' : lang === 'vi' ? 'Khám phá bộ sưu tập' : 'Discover the Collection'} <ArrowRight className="w-5 h-5" /></Link></div></div></section>
     </div>
   );
 }

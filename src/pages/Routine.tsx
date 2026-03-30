@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Moon, Sparkles, Sun } from 'lucide-react';
 import { products } from '../data/products';
+import { useI18n } from '../i18n/I18nProvider';
 
 const cleanser = products.find((product) => product.id === 'ultra-deep-purifying-cleanser') ?? products[0];
 const serum = products.find((product) => product.id === 'hydrating-b5-serum') ?? products[0];
@@ -8,142 +9,26 @@ const moisturizer = products.find((product) => product.id === 'biopeptide-cream'
 const optilight = products.find((product) => product.id === 'optilight-cream') ?? products[0];
 const sunscreen = products.find((product) => product.id === 'uv-shield-sunscreen') ?? products[0];
 
-const routineSteps = [
-  {
-    step: '01',
-    label: 'Cleanse',
-    product: cleanser,
-    usage: 'Use morning and evening as the first step to cleanse away impurities and refresh the skin.',
-  },
-  {
-    step: '02',
-    label: 'Treat',
-    product: serum,
-    usage: 'Apply after cleansing to deliver lightweight hydration and support the skin barrier.',
-  },
-  {
-    step: '03',
-    label: 'Moisturize',
-    product: moisturizer,
-    alternate: optilight,
-    usage: 'Follow with a cream step to support moisture, comfort, and a smoother-looking complexion.',
-  },
-  {
-    step: '04',
-    label: 'Protect',
-    product: sunscreen,
-    usage: 'Finish every morning with SPF 50+ daily protection and reapply as needed throughout the day.',
-  },
-];
-
-const concerns = [
-  {
-    concern: 'Dull / Uneven Tone',
-    routine: 'OptiLight Cream + Hydrating B5 Serum + Brightening UV Shield SPF 50+',
-  },
-  {
-    concern: 'Dark Spots / Melasma',
-    routine: 'MelanoXpert Cream + RenewGlow Peeling Serum + SkinCalm Neutralizer Oil',
-  },
-  {
-    concern: 'Aging / Wrinkles',
-    routine: 'BioPeptide Cream + Hydrating B5 Serum',
-  },
-  {
-    concern: 'Pores / Congestion',
-    routine: 'Pore Deep Cleansing Water + Ultra Deep Purifying Cleanser',
-  },
-];
-
 export default function Routine() {
+  const { lang, localizeProduct, localizeConcern } = useI18n();
+  const routineSteps = [
+    { step: '01', label: lang === 'ko' ? '클렌징' : lang === 'vi' ? 'Làm sạch' : 'Cleanse', product: localizeProduct(cleanser), usage: lang === 'ko' ? '아침과 저녁 첫 단계에서 노폐물을 씻어내고 피부를 산뜻하게 정돈합니다.' : lang === 'vi' ? 'Dùng sáng và tối như bước đầu tiên để làm sạch cặn bẩn và làm tươi da.' : 'Use morning and evening as the first step to cleanse away impurities and refresh the skin.' },
+    { step: '02', label: lang === 'ko' ? '케어' : lang === 'vi' ? 'Điều trị' : 'Treat', product: localizeProduct(serum), usage: lang === 'ko' ? '클렌징 후 가벼운 수분과 장벽 케어를 더합니다.' : lang === 'vi' ? 'Dùng sau khi làm sạch để bổ sung độ ẩm nhẹ và hỗ trợ hàng rào da.' : 'Apply after cleansing to deliver lightweight hydration and support the skin barrier.' },
+    { step: '03', label: lang === 'ko' ? '보습' : lang === 'vi' ? 'Dưỡng ẩm' : 'Moisturize', product: localizeProduct(moisturizer), alternate: localizeProduct(optilight), usage: lang === 'ko' ? '크림 단계로 수분과 편안함, 더 부드러운 피부 표현을 돕습니다.' : lang === 'vi' ? 'Tiếp theo là bước kem để tăng độ ẩm, cảm giác dễ chịu và bề mặt da mịn hơn.' : 'Follow with a cream step to support moisture, comfort, and a smoother-looking complexion.' },
+    { step: '04', label: lang === 'ko' ? '보호' : lang === 'vi' ? 'Bảo vệ' : 'Protect', product: localizeProduct(sunscreen), usage: lang === 'ko' ? '아침마다 SPF 50+로 마무리하고 필요 시 덧발라줍니다.' : lang === 'vi' ? 'Kết thúc mỗi buổi sáng với SPF 50+ và thoa lại khi cần trong ngày.' : 'Finish every morning with SPF 50+ daily protection and reapply as needed throughout the day.' },
+  ];
+  const concerns = [
+    { concern: 'Dull / Uneven Tone', routine: `${localizeProduct(optilight).shortName} + ${localizeProduct(serum).shortName} + ${localizeProduct(sunscreen).shortName}` },
+    { concern: 'Dark Spots / Melasma', routine: `${localizeProduct(products.find((p)=>p.id==='melanoxpert-cream')!).shortName} + ${localizeProduct(products.find((p)=>p.id==='peel-care-set')!).shortName}` },
+    { concern: 'Aging / Wrinkles', routine: `${localizeProduct(moisturizer).shortName} + ${localizeProduct(serum).shortName}` },
+    { concern: 'Pores / Congestion', routine: `${localizeProduct(products.find((p)=>p.id==='pore-deep-cleansing-water')!).shortName} + ${localizeProduct(cleanser).shortName}` },
+  ];
+
   return (
     <div>
-      <section className="pt-32 pb-16 bg-surface-container-lowest border-b border-outline-variant/20">
-        <div className="max-w-7xl mx-auto px-8 text-center animate-fade-up">
-          <div className="text-sm font-semibold tracking-[0.2em] uppercase text-primary mb-4">Skin Routine</div>
-          <h1 className="text-4xl lg:text-6xl font-bold font-headline tracking-tighter mb-6 text-on-surface">
-            Your Complete Hancell Routine
-          </h1>
-          <p className="text-lg text-on-surface-variant font-body max-w-3xl mx-auto leading-relaxed">
-            A four-step routine inspired by Korean dermatological care — designed to cleanse, treat, moisturise, and protect for visible everyday results.
-          </p>
-        </div>
-      </section>
-
-      <section className="py-24 bg-surface">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-            <div className="bg-white rounded-3xl p-8 border border-outline-variant/20 editorial-shadow hover-lift animate-fade-up">
-              <div className="flex items-center gap-3 mb-4 text-primary">
-                <Sun className="w-6 h-6" />
-                <h2 className="text-2xl font-bold font-headline text-on-surface">Morning</h2>
-              </div>
-              <p className="text-on-surface-variant font-body leading-7">
-                Begin with cleansing, follow with targeted treatment, seal in moisture, then finish with daily UV protection.
-              </p>
-            </div>
-            <div className="bg-white rounded-3xl p-8 border border-outline-variant/20 editorial-shadow hover-lift animate-fade-up-delay-1">
-              <div className="flex items-center gap-3 mb-4 text-primary">
-                <Moon className="w-6 h-6" />
-                <h2 className="text-2xl font-bold font-headline text-on-surface">Evening</h2>
-              </div>
-              <p className="text-on-surface-variant font-body leading-7">
-                Repeat the routine without the SPF step, focusing on cleansing, hydration, and restorative care through the night.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {routineSteps.map((item) => (
-              <div key={item.step} className="bg-white rounded-2xl p-6 border border-outline-variant/20 editorial-shadow group hover-lift animate-fade-up">
-                <div className="relative aspect-[4/5] rounded-2xl bg-surface-container-lowest p-5 mb-6 overflow-hidden">
-                  <img src={item.product.image} alt={item.product.name} className="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute top-4 left-4 bg-white rounded-full px-4 py-2 shadow-sm text-sm font-headline font-bold text-primary">
-                    {item.step}
-                  </div>
-                  <div className="absolute bottom-4 left-4 rounded-full bg-primary text-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em]">
-                    {item.label}
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold font-headline text-on-surface mb-2">{item.product.shortName}</h3>
-                {item.alternate ? (
-                  <p className="text-sm text-primary font-medium mb-3">Also suitable: {item.alternate.shortName}</p>
-                ) : null}
-                <p className="text-on-surface-variant font-body text-sm leading-6 mb-4">{item.usage}</p>
-                <div className="font-semibold text-primary">{item.product.priceDisplay}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 bg-surface-container-lowest">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16 animate-fade-up">
-            <div className="text-sm font-semibold tracking-[0.2em] uppercase text-primary mb-3">Skin Concern Guide</div>
-            <h2 className="text-4xl font-bold font-headline mb-4 text-on-surface">Find the Right Combination</h2>
-            <p className="text-on-surface-variant font-body text-lg leading-relaxed">
-              Match your primary concern with a Hancell routine combination drawn directly from the current product materials.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {concerns.map((item) => (
-              <div key={item.concern} className="bg-white rounded-2xl p-8 border border-outline-variant/20 editorial-shadow hover-lift animate-fade-up">
-                <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] mb-4">
-                  <Sparkles className="w-4 h-4" /> Concern Focus
-                </div>
-                <h3 className="text-2xl font-bold font-headline text-on-surface mb-3">{item.concern}</h3>
-                <p className="text-on-surface-variant font-body leading-7">{item.routine}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-12 text-center animate-fade-up-delay-1">
-            <Link to="/products" className="inline-flex items-center gap-2 primary-gradient-btn text-white px-8 py-4 rounded-xl font-headline font-semibold text-lg hover:opacity-90 transition-all interactive-scale">
-              Explore the Product Line <ArrowRight className="w-5 h-5" />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <section className="pt-32 pb-16 bg-surface-container-lowest border-b border-outline-variant/20"><div className="max-w-7xl mx-auto px-8 text-center animate-fade-up"><div className="text-sm font-semibold tracking-[0.2em] uppercase text-primary mb-4">{lang === 'ko' ? '스킨 루틴' : lang === 'vi' ? 'Routine da' : 'Skin Routine'}</div><h1 className="text-4xl lg:text-6xl font-bold font-headline tracking-tighter mb-6 text-on-surface">{lang === 'ko' ? '완성형 한셀 루틴' : lang === 'vi' ? 'Routine Hancell hoàn chỉnh' : 'Your Complete Hancell Routine'}</h1><p className="text-lg text-on-surface-variant font-body max-w-3xl mx-auto leading-relaxed">{lang === 'ko' ? '클렌징, 케어, 보습, 보호로 이어지는 4단계 루틴으로 매일의 피부 컨디션을 관리해보세요.' : lang === 'vi' ? 'Routine 4 bước lấy cảm hứng từ chăm sóc da liễu Hàn Quốc để làm sạch, điều trị, dưỡng ẩm và bảo vệ da mỗi ngày.' : 'A four-step routine inspired by Korean dermatological care — designed to cleanse, treat, moisturise, and protect for visible everyday results.'}</p></div></section>
+      <section className="py-24 bg-surface"><div className="max-w-7xl mx-auto px-8"><div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16"><div className="bg-white rounded-3xl p-8 border border-outline-variant/20 editorial-shadow hover-lift animate-fade-up"><div className="flex items-center gap-3 mb-4 text-primary"><Sun className="w-6 h-6" /><h2 className="text-2xl font-bold font-headline text-on-surface">{lang === 'ko' ? '아침' : lang === 'vi' ? 'Buổi sáng' : 'Morning'}</h2></div><p className="text-on-surface-variant font-body leading-7">{lang === 'ko' ? '클렌징 후 집중 케어와 보습을 더하고, 마지막으로 자외선 차단으로 마무리합니다.' : lang === 'vi' ? 'Bắt đầu với làm sạch, tiếp theo là điều trị và dưỡng ẩm, cuối cùng hoàn thiện bằng chống nắng hằng ngày.' : 'Begin with cleansing, follow with targeted treatment, seal in moisture, then finish with daily UV protection.'}</p></div><div className="bg-white rounded-3xl p-8 border border-outline-variant/20 editorial-shadow hover-lift animate-fade-up-delay-1"><div className="flex items-center gap-3 mb-4 text-primary"><Moon className="w-6 h-6" /><h2 className="text-2xl font-bold font-headline text-on-surface">{lang === 'ko' ? '저녁' : lang === 'vi' ? 'Buổi tối' : 'Evening'}</h2></div><p className="text-on-surface-variant font-body leading-7">{lang === 'ko' ? '저녁에는 자외선 차단 단계를 제외하고 클렌징, 수분, 진정, 보습 중심으로 루틴을 반복합니다.' : lang === 'vi' ? 'Lặp lại routine vào buổi tối mà không cần bước chống nắng, tập trung vào làm sạch, cấp ẩm và phục hồi da.' : 'Repeat the routine without the SPF step, focusing on cleansing, hydration, and restorative care through the night.'}</p></div></div><div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">{routineSteps.map((item)=><div key={item.step} className="bg-white rounded-2xl p-6 border border-outline-variant/20 editorial-shadow group hover-lift animate-fade-up"><div className="relative aspect-[4/5] rounded-2xl bg-surface-container-lowest p-5 mb-6 overflow-hidden"><img src={item.product.image} alt={item.product.name} className="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-500" /><div className="absolute top-4 left-4 bg-white rounded-full px-4 py-2 shadow-sm text-sm font-headline font-bold text-primary">{item.step}</div><div className="absolute bottom-4 left-4 rounded-full bg-primary text-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em]">{item.label}</div></div><h3 className="text-xl font-bold font-headline text-on-surface mb-2">{item.product.shortName}</h3>{item.alternate ? <p className="text-sm text-primary font-medium mb-3">{lang === 'ko' ? '대체 추천' : lang === 'vi' ? 'Có thể thay bằng' : 'Also suitable'}: {item.alternate.shortName}</p> : null}<p className="text-on-surface-variant font-body text-sm leading-6 mb-4">{item.usage}</p><div className="font-semibold text-primary">{item.product.priceDisplay}</div></div>)}</div></div></section>
+      <section className="py-24 bg-surface-container-lowest"><div className="max-w-7xl mx-auto px-8"><div className="text-center max-w-2xl mx-auto mb-16 animate-fade-up"><div className="text-sm font-semibold tracking-[0.2em] uppercase text-primary mb-3">{lang === 'ko' ? '피부 고민 가이드' : lang === 'vi' ? 'Hướng dẫn vấn đề da' : 'Skin Concern Guide'}</div><h2 className="text-4xl font-bold font-headline mb-4 text-on-surface">{lang === 'ko' ? '나에게 맞는 조합 찾기' : lang === 'vi' ? 'Tìm kết hợp phù hợp' : 'Find the Right Combination'}</h2><p className="text-on-surface-variant font-body text-lg leading-relaxed">{lang === 'ko' ? '현재 제품 자료를 바탕으로 주요 피부 고민에 맞는 한셀 루틴 조합을 확인해보세요.' : lang === 'vi' ? 'Chọn routine Hancell theo từng vấn đề da dựa trên bộ tài liệu sản phẩm hiện có.' : 'Match your primary concern with a Hancell routine combination drawn directly from the current product materials.'}</p></div><div className="grid grid-cols-1 md:grid-cols-2 gap-6">{concerns.map((item)=><div key={item.concern} className="bg-white rounded-2xl p-8 border border-outline-variant/20 editorial-shadow hover-lift animate-fade-up"><div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] mb-4"><Sparkles className="w-4 h-4" /> {lang === 'ko' ? '고민 포커스' : lang === 'vi' ? 'Tập trung' : 'Concern Focus'}</div><h3 className="text-2xl font-bold font-headline text-on-surface mb-3">{localizeConcern(item.concern)}</h3><p className="text-on-surface-variant font-body leading-7">{item.routine}</p></div>)}</div><div className="mt-12 text-center animate-fade-up-delay-1"><Link to="/products" className="inline-flex items-center gap-2 primary-gradient-btn text-white px-8 py-4 rounded-xl font-headline font-semibold text-lg hover:opacity-90 transition-all interactive-scale">{lang === 'ko' ? '제품 라인 보기' : lang === 'vi' ? 'Xem dòng sản phẩm' : 'Explore the Product Line'} <ArrowRight className="w-5 h-5" /></Link></div></div></section>
     </div>
   );
 }
