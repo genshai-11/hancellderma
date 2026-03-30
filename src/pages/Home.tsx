@@ -51,10 +51,9 @@ export default function Home() {
                   <img src={heroCollectionImg} alt="Hancell skincare collection" className="w-full h-full object-contain object-center scale-[1.02] -translate-y-6 md:-translate-y-8" />
                 </div>
               </div>
-              <div className="absolute -bottom-20 md:-bottom-24 lg:-bottom-20 left-1/2 -translate-x-1/2 lg:left-auto lg:right-6 lg:translate-x-0 bg-white p-6 rounded-2xl editorial-shadow z-20 w-[92%] max-w-md hover-lift animate-fade-up-delay-3 border border-outline-variant/20">
+              <div className="absolute -bottom-28 md:-bottom-32 lg:-bottom-24 left-1/2 -translate-x-1/2 lg:left-auto lg:right-6 lg:translate-x-0 bg-white p-4 rounded-2xl editorial-shadow z-20 w-[92%] max-w-md hover-lift animate-fade-up-delay-3 border border-outline-variant/20">
                 <div className="text-xs font-bold tracking-[0.2em] text-primary uppercase mb-2">{text.home.featuredCollection[lang]}</div>
-                <p className="font-headline font-bold text-on-surface text-xl mb-2">{text.home.routineName[lang]}</p>
-                <p className="text-sm text-on-surface-variant font-body mb-4 leading-6">{text.home.routineDesc[lang]}</p>
+                <p className="font-headline font-bold text-on-surface text-lg mb-3">{text.home.routineName[lang]}</p>
                 <div className="flex flex-wrap gap-2">
                   {[
                     lang === 'ko' ? '클렌징' : lang === 'vi' ? 'Làm sạch' : 'Cleanse',
@@ -62,7 +61,8 @@ export default function Home() {
                     lang === 'ko' ? '보습' : lang === 'vi' ? 'Dưỡng ẩm' : 'Moisturize',
                     lang === 'ko' ? '보호' : lang === 'vi' ? 'Bảo vệ' : 'Protect',
                   ].map((item) => (
-                    <span key={item} className="inline-flex items-center rounded-full bg-primary/10 text-primary px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em]">
+                    <span key={item} className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 text-primary px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.1em]">
+                      <Sparkles className="w-3.5 h-3.5" />
                       {item}
                     </span>
                   ))}
