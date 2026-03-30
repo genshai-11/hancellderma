@@ -5,7 +5,7 @@ export default function Footer() {
   const { lang, text } = useI18n();
 
   return (
-    <footer className="bg-on-surface text-surface py-16 px-8">
+    <footer className="bg-on-surface text-surface py-12 px-8 border-t border-white/10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="col-span-1 md:col-span-2">
           <h2 className="text-3xl font-headline font-bold mb-4">Hancell Derma</h2>
@@ -32,7 +32,7 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-outline-variant/20 text-center text-surface-variant font-body text-sm">
+      <div className="max-w-7xl mx-auto mt-12 pt-6 border-t border-outline-variant/20 text-center text-surface-variant font-body text-sm">
         <p>&copy; 2025 {text.footer.rights[lang]}</p>
       </div>
     </footer>

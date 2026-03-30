@@ -185,7 +185,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 bg-on-surface text-surface">
+      <section className="py-20 bg-on-surface text-surface">
         <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="animate-fade-up">
             <div className="text-sm font-semibold tracking-[0.2em] uppercase text-primary-fixed mb-3">{text.home.concernBadge[lang]}</div>

@@ -9,9 +9,9 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 w-full z-50 glass-nav shadow-sm animate-fade-up">
-      <div className="flex justify-between items-center px-6 md:px-8 py-3 md:py-4 max-w-7xl mx-auto gap-6">
+      <div className="flex justify-between items-center px-6 md:px-8 py-2 md:py-3 max-w-7xl mx-auto gap-6">
         <Link to="/" className="flex items-center text-on-surface whitespace-nowrap interactive-scale shrink-0">
-          <img src={navbarLogoImg} alt="Hancell logo" className="w-24 h-24 md:w-28 md:h-28 object-contain" />
+          <img src={navbarLogoImg} alt="Hancell logo" className="w-20 h-20 md:w-24 md:h-24 object-contain" />
         </Link>
         <div className="hidden lg:flex items-center gap-6 font-headline tracking-tight font-semibold text-sm xl:text-base">
           <Link to="/products" className={`nav-link-underline ${isActive('/products') ? 'is-active text-primary' : 'text-on-surface hover:text-primary-container'}`}>{text.nav.products[lang]}</Link>
