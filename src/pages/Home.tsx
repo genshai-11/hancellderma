@@ -16,7 +16,7 @@ export default function Home() {
 
   return (
     <div>
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden hero-gradient">
+      <section className="relative pt-32 pb-36 lg:pt-48 lg:pb-44 overflow-hidden hero-gradient">
         <div className="max-w-7xl mx-auto px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-16 items-center">
             <div className="max-w-2xl animate-fade-up">
@@ -73,7 +73,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative bg-white py-10 animate-fade-up">
+      <section className="relative bg-white pt-20 pb-10 animate-fade-up">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent"></div>
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent"></div>
         <div className="max-w-7xl mx-auto px-8">
