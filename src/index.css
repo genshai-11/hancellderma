@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+@theme {
+  --font-headline: "Manrope", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-label: "Inter", sans-serif;
+
+  --color-primary: #006a66;
+  --color-primary-container: #4dada8;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #003d3a;
+  --color-secondary: #006a66;
+  --color-secondary-container: #98efe9;
+  --color-on-secondary: #ffffff;
+  --color-tertiary: #4e5e80;
+  --color-tertiary-container: #8e9ec3;
+  --color-surface: #f5faff;
+  --color-on-surface: #0f1d26;
+  --color-on-surface-variant: #3e4948;
+  --color-surface-container: #e1f0fc;
+  --color-surface-container-low: #e9f5ff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-high: #dbeaf6;
+  --color-surface-container-highest: #d5e5f0;
+  --color-outline: #6e7978;
+  --color-outline-variant: #bdc9c7;
+  --color-tertiary-fixed: #d8e2ff;
+  --color-on-tertiary-fixed-variant: #364767;
+  --color-primary-fixed: #95f3ed;
+  --color-primary-fixed-dim: #78d6d0;
+  --color-on-background: #0f1d26;
+  --color-background: #f5faff;
+  --color-surface-variant: #d5e5f0;
+}
+
+@keyframes fade-up-soft {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@layer utilities {
+  .glass-nav {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+  }
+  .primary-gradient {
+    background: linear-gradient(135deg, #006a66 0%, #4dada8 100%);
+  }
+  .primary-gradient-btn {
+    background: linear-gradient(135deg, #006a66 0%, #4dada8 100%);
+  }
+  .editorial-shadow {
+    box-shadow: 0 20px 40px rgba(15, 29, 38, 0.05);
+  }
+  .hero-gradient {
+    background: radial-gradient(circle at top right, #e9f5ff 0%, #f5faff 100%);
+  }
+  .product-card-gradient {
+    background: radial-gradient(circle at center, #95f3ed20 0%, transparent 70%);
+  }
+  .hero-soft-gradient {
+    background: radial-gradient(circle at top right, #e9f5ff 0%, #f5faff 100%);
+  }
+  .clinical-gradient {
+    background: linear-gradient(135deg, #006a66 0%, #4dada8 100%);
+  }
+  .animate-fade-up {
+    animation: fade-up-soft 0.8s ease-out both;
+  }
+  .animate-fade-up-delay-1 {
+    animation: fade-up-soft 0.8s ease-out 0.08s both;
+  }
+  .animate-fade-up-delay-2 {
+    animation: fade-up-soft 0.8s ease-out 0.16s both;
+  }
+  .animate-fade-up-delay-3 {
+    animation: fade-up-soft 0.8s ease-out 0.24s both;
+  }
+  .animate-soft-float {
+    animation: soft-float 6s ease-in-out infinite;
+  }
+  .hover-lift {
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 48px rgba(15, 29, 38, 0.08);
+  }
+  .interactive-scale {
+    transition: transform 220ms ease, opacity 220ms ease;
+  }
+  .interactive-scale:hover {
+    transform: scale(1.02);
+  }
+  .nav-link-underline {
+    position: relative;
+    transition: color 180ms ease;
+  }
+  .nav-link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 180ms ease;
+  }
+  .nav-link-underline:hover::after,
+  .nav-link-underline.is-active::after {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-fade-up-delay-1,
+  .animate-fade-up-delay-2,
+  .animate-fade-up-delay-3,
+  .animate-soft-float,
+  .hover-lift,
+  .interactive-scale,
+  .nav-link-underline,
+  .nav-link-underline::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
