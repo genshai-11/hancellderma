@@ -18,7 +18,6 @@ export default function Navbar() {
           <Link to="/routine" className={`nav-link-underline ${isActive('/routine') ? 'is-active text-primary' : 'text-on-surface hover:text-primary-container'}`}>{text.nav.routine[lang]}</Link>
           <Link to="/science" className={`nav-link-underline ${isActive('/science') ? 'is-active text-primary' : 'text-on-surface hover:text-primary-container'}`}>{text.nav.science[lang]}</Link>
           <Link to="/about" className={`nav-link-underline ${isActive('/about') ? 'is-active text-primary' : 'text-on-surface hover:text-primary-container'}`}>{text.nav.about[lang]}</Link>
-          <Link to="/contact" className={`nav-link-underline ${isActive('/contact') ? 'is-active text-primary' : 'text-on-surface hover:text-primary-container'}`}>{text.nav.contact[lang]}</Link>
         </div>
         <div className="flex items-center gap-3 md:gap-4">
           <div className="flex items-center rounded-full border border-outline-variant/30 bg-white/80 p-1">

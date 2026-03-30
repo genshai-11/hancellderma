@@ -26,8 +26,8 @@ export default function Footer() {
         <div>
           <h4 className="font-headline font-bold mb-4 text-primary-fixed">{text.footer.connect[lang]}</h4>
           <ul className="space-y-2 font-body text-surface-variant">
-            <li><Link to="/contact" className="hover:text-white transition-colors">{text.footer.inquiries[lang]}</Link></li>
-            <li><Link to="/contact" className="hover:text-white transition-colors">{text.footer.partnerships[lang]}</Link></li>
+            <li><a href="mailto:contact@hancellderma.com" className="hover:text-white transition-colors">{text.footer.inquiries[lang]}</a></li>
+            <li><a href="mailto:contact@hancellderma.com" className="hover:text-white transition-colors">{text.footer.partnerships[lang]}</a></li>
             <li><a href="mailto:contact@hancellderma.com" className="hover:text-white transition-colors">{text.footer.stockists[lang]}</a></li>
           </ul>
         </div>
