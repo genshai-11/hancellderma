@@ -1,6 +1,6 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, CheckCircle2, Droplets, FlaskConical, Layers3, Sparkles } from 'lucide-react';
-import { getProductBySlug, getRelatedProducts } from '../data/products';
+import { getProductBySlug, getRelatedProducts, type Product } from '../data/products';
 import { useI18n } from '../i18n/I18nProvider';
 
 export default function ProductDetail() {
@@ -11,7 +11,7 @@ export default function ProductDetail() {
   if (!product) return <Navigate to="/products" replace />;
 
   const localized = localizeProduct(product);
-  const relatedProducts = getRelatedProducts(product).map(localizeProduct);
+  const relatedProducts: Product[] = getRelatedProducts(product).map(localizeProduct);
 
   return (
     <div>

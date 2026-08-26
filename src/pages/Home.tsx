@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Droplets, ShieldCheck, Sparkles, Microscope, Users, Layers3 } from 'lucide-react';
-import { featuredProducts, products } from '../data/products';
+import { featuredProducts, products, type Product } from '../data/products';
 import heroCollectionImg from '../../image/4fda9141da055b5b0214.jpg';
 import hancellLogoImg from '../../image/HANCELL_bluecolor2.png';
 import { useI18n } from '../i18n/I18nProvider';
@@ -12,7 +12,7 @@ const protectProduct = products.find((product) => product.id === 'uv-shield-suns
 
 export default function Home() {
   const { lang, text, localizeProduct, localizeLine, localizeConcern } = useI18n();
-  const heroFeatured = featuredProducts.map(localizeProduct);
+  const heroFeatured: Product[] = featuredProducts.map(localizeProduct);
 
   return (
     <div>
